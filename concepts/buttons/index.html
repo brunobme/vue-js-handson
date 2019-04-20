@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+	<title>Vue Buttons</title>
+	<script src="http://unpkg.com/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>{{title}}</h1>
+		<ul>
+			<h3>Master Soft Skills</h3>
+			<li v-for="skill in skills" v-if="skill.type === 'soft'">{{skill.text}}: <progress max="10" v-bind:value="skill.level"></progress> {{skill.level}}/10</li>
+		</ul>
+		<ul>
+			<h3>Master Technical Skills</h3>
+			<li v-for="skill in skills" v-if="skill.type === 'technical'">{{skill.text}}: <progress max="10" v-bind:value="skill.level"></progress> {{skill.level}}/10</li>
+		</ul>
+
+		<p>
+			Phone:  <button class="vue-btn" @click="toggle">Toggle it</button> <span v-if="bool">083 1333 316</span>
+		</p>		
+	</div>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				title: "Buttons",
+				bool: false,
+			},
+			methods:{
+				toggle() {
+					var bool = this.bool;
+					this.bool = !bool;
+					return bool
+					// alert(`Success: ${this.randN}`)
+				}
+			}
+		})
+	</script>
+</body>
+</html>
