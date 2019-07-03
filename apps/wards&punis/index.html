@@ -2,29 +2,44 @@
 <head>
 	<title>To do List</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<script src="js/bootstrap.js"></script>
 	<script src="js/vue.js"></script>
+	<!-- <script src="js/bootstrap.js"></script> -->
 </head>
 <body>
 	<div id="app">
-		<h1>{{title}}</h1>
-		<form action="" class="container">
-			<label for="to_do_title">Title</label>
-			<input name="to_do_title" type="text">
-		</form>
-		<ul>
-			<h3>Master Soft Skills</h3>
-			<li v-for="skill in skills" v-if="skill.type === 'soft'">{{skill.text}}: <progress max="10" v-bind:value="skill.level"></progress> {{skill.level}}/10</li>
-		</ul>
-		<ul>
-			<h3>Master Technical Skills</h3>
-			<li v-for="skill in skills" v-if="skill.type === 'technical'">{{skill.text}}: <progress max="10" v-bind:value="skill.level"></progress> {{skill.level}}/10</li>
-		</ul>
-
-		<p>
-			Phone:  <button class="vue-btn" @click="toggle">Toggle it</button> <span v-if="bool">083 1333 316</span>
-		</p>		
+		<div class="container">
+			<h1>{{title}}</h1>
+			<div class="form col-sm-12">
+				<div class="form-group">
+					<label for="">What To Do?</label>
+					<input class="form-control" type="text" v-model="todo.what">
+				</div>
+				<div class="form-group">
+					<label for="">Due date</label>
+					<input class="form-control" type="date" v-model="todo.due_date">
+				</div>
+				<div class="form-group">
+					<label for="">Details</label>
+					<input class="form-control" type="text" v-model="todo.details">
+				</div>
+				<button class="btn btn-primary" @click="add">Add</button>
+			</div>
+			<div class="row">
+				<div class="col-md-4" v-for="(todo, index) in to_dos">
+					<div class="card">
+						<div class="card-block" >
+							<button class="close" @click="remove(index)">&times;</button>
+							<h4 class="card-title">{{todo.what}}</h4>
+							<h6 class="card-subtitle">{{todo.details}}</h6>
+							<p class="card-text">{{todo.due_date}}</p>
+							<p class="card-text">{{todo.create_date}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<script src="js/main.js"></script>
+
+	<script src="js/main.js" type="text/javascript"></script>
 </body>
 </html>
